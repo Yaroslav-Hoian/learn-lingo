@@ -1,0 +1,83 @@
+:root {
+  --animation-hover: all 400ms ease;
+  --dark-color: #121417;
+  --white-color: #ffffff;
+  --bg-lightblue: #f8f8f8;
+  --stat-textColor: rgba(18, 20, 23, 0.7);
+  --form-text: rgba(18, 20, 23, 0.8);
+  --gray-card: #8a8a89;
+  --price-color: #38cd3e;
+}
+
+[data-theme="theme1"] {
+  --accent-color: #f4c550;
+  --accent-light: #fbe9ba;
+  --icon-stopColor: #e7c885;
+  --bg-macbook: linear-gradient(180deg, #eeb055 0%, #d08f38 100%);
+}
+
+[data-theme="theme2"] {
+  --accent-color: #9fbaae;
+  --accent-light: #cbded3;
+  --icon-stopColor: #9eb9ad;
+  --bg-macbook: linear-gradient(180deg, #295761 0%, #183e49 100%);
+}
+
+[data-theme="theme3"] {
+  --accent-color: #9fb7ce;
+  --accent-light: #bfd6ea;
+  --icon-stopColor: #bfd6ea;
+  --bg-macbook: linear-gradient(180deg, #314b6e 0%, #1f385a 100%);
+}
+
+[data-theme="theme4"] {
+  --accent-color: #e0a39a;
+  --accent-light: #f2c0bd;
+  --icon-stopColor: #dfa299;
+  --bg-macbook: linear-gradient(180deg, #b03f3e 0%, #982a27 100%);
+}
+
+[data-theme="theme5"] {
+  --accent-color: #f0aa8d;
+  --accent-light: #f4c8ba;
+  --icon-stopColor: #efa98c;
+  --bg-macbook: linear-gradient(180deg, #e17650 0%, #ca5b38 100%);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  color: #121417;
+  background: #ffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 64px;
+}

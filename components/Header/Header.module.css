@@ -1,0 +1,50 @@
+.subContainer {
+  width: 1312px;
+  padding: 20px 64px;
+}
+
+.headerGrid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  padding: 10px 0 10px 0;
+}
+
+.headerNav {
+  display: flex;
+  gap: 28px;
+  padding: 14px 0 14px 0;
+}
+
+.headerLinkNav {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.headerActions {
+  display: flex;
+  gap: 16px;
+}
+
+.logInBtn {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
+  padding: 14px 0 14px 0;
+  display: flex;
+  gap: 8px;
+}
+
+.registrationBtn {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #fff;
+  padding: 14px 39px;
+  border-radius: 12px;
+  background-color: #121417;
+}

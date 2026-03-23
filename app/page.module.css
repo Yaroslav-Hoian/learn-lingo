@@ -1,0 +1,10 @@
+.heroGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.heroContent {
+    display: flex;
+    gap: 24px;
+}

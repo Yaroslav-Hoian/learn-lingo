@@ -1,0 +1,31 @@
+.heroStat {
+  padding: 40px 122px;
+  border: 1.5px dashed #f4c550;
+  border-radius: 30px;
+}
+
+.statList {
+  display: flex;
+  gap: 100px;
+}
+
+.statItem {
+  display: flex;
+  gap: 16px;
+}
+
+.statValue {
+  text-wrap: nowrap;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 1.143;
+  letter-spacing: -0.02em;
+}
+
+.statDescription {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.286;
+  letter-spacing: -0.02em;
+  color: rgba(18, 20, 23, 0.7);
+}
