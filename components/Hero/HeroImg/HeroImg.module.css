@@ -1,19 +1,13 @@
 .heroImg {
-  background: #fbe9ba;
+  background-color: var(--accent-light);
   border-radius: 30px;
-  /* padding: 80px 115px 106px 114px; */
   width: 568px;
   height: 530px;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.imageContainer {
-  position: relative;
-  background-color: #fbe9ba;
-  border-radius: 30px;
   overflow: hidden;
+    position: relative;
 }
 
 .imageBox {
@@ -34,24 +28,24 @@
   }
   100% {
     opacity: 1;
-    transform: translateX(0%);
+    transform: translateY(0%);
   }
 }
 
 .iMacBox {
   position: relative;
   background: var(--bg-macbook);
-  width: 260px;
-  height: 96px;
+  width: 360px;
+  height: 160px;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
   bottom: 1px;
-  margin-top: -60px;
+  margin-top: -70px;
 }
 
 .iMac {
   position: absolute;
-  top: 40%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }

@@ -1,12 +1,16 @@
+"use client";
+
 import Link from "next/link";
 import css from "./Header.module.css";
 import IconJust from "../Icons/Icons";
+import { usePathname } from "next/navigation";
 
 interface HeaderProps {
   className: string;
 }
 
 const Header = ({ className }: HeaderProps) => {
+  const pathName = usePathname();
   return (
     <header className={className}>
       <div className={css.subContainer}>
@@ -17,13 +21,17 @@ const Header = ({ className }: HeaderProps) => {
           <nav>
             <ul className={css.headerNav}>
               <li>
-                <Link className={css.headerLinkNav} href="/" aria-label="Home">
+                <Link
+                  className={`${css.headerLinkNav} ${pathName === "/" ? css.headerLinkNavActive : ""}`}
+                  href="/"
+                  aria-label="Home"
+                >
                   Home
                 </Link>
               </li>
               <li>
                 <Link
-                  className={css.headerLinkNav}
+                  className={`${css.headerLinkNav} ${pathName === "/teachers" ? css.headerLinkNavActive : ""}`}
                   href="/teachers"
                   aria-label="Teachers"
                 >
@@ -38,7 +46,7 @@ const Header = ({ className }: HeaderProps) => {
                 width={20}
                 height={20}
                 icon="log-in"
-                stroke="#f4c550"
+                stroke="var(--accent-color)"
                 fill="none"
               />
               Log in

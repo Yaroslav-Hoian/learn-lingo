@@ -1,6 +1,6 @@
 .heroStat {
   padding: 40px 122px;
-  border: 1.5px dashed #f4c550;
+  border: 1.5px dashed var(--accent-color);
   border-radius: 30px;
 }
 

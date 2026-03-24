@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header/Header";
+import ThemeProvider from "@/Theme/ThemeProvider";
+import ThemeSwitcher from "@/Theme/ThemeSwitcher";
 
 const robotoSans = Roboto({
   weight: ["400", "500", "700"],
@@ -22,8 +24,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={robotoSans.className}>
-        <Header className="container"/>
-        <main className="container">{children}</main>
+        <ThemeProvider>
+          <Header className="container" />
+          <main className="container">
+            {children}
+            <ThemeSwitcher />
+          </main>
+        </ThemeProvider>
       </body>
     </html>
   );
