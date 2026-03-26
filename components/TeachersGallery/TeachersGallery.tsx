@@ -3,24 +3,26 @@
 import { getAllTeachers } from "@/lib/api/teachers";
 import { Teacher } from "@/types/type";
 import { useEffect, useState } from "react";
+// import NoFindTeacher from "./NoFindTeacher/NoFindTeacher";
+import TeacherItem from "./TeacherItem/TeacherItem";
+interface TeachersGalleryProps {
+  filteredTeacher?: Teacher[];
+  // filters?: TeacherFilter;
+}
 
-export type TeacherWithId = Teacher & { id: string };
-
-export default function TeachersGallery() {
-  const [teachers, setTeachers] = useState<TeacherWithId[]>([]);
+export default function TeachersGallery({
+  filteredTeacher,
+  // filters,
+}: TeachersGalleryProps) {
+  const [teachers, setTeachers] = useState<Teacher[]>([]);
   const [teachersPerPage, setTeachersPerPage] = useState(4);
-  const [hasMore, setHasMore] = useState(true);
-  //   const [favoritesPerPage, setFavoritesPerPage] = useState(4);
+  const [favoritesPerPage, setFavoritesPerPage] = useState(4);
 
   useEffect(() => {
     const getTeachersData = async () => {
       const data = await getAllTeachers(teachersPerPage);
       setTeachers(data);
-      console.log("Fetched:", data);
-      console.log(teachersPerPage);
-
-      setHasMore(data.length === teachersPerPage);
-      console.log("Fetched teachers:", data.length);
+      console.log("Teachers data:", data);
     };
 
     getTeachersData();
@@ -30,25 +32,34 @@ export default function TeachersGallery() {
     setTeachersPerPage((prev) => prev + 4);
   };
 
-  //   const favoritesShowMore = () => {
-  //     setFavoritesPerPage((prev) => (prev += 4));
-  //   };
+  const favoritesShowMore = () => {
+    setFavoritesPerPage((prev) => (prev += 4));
+  };
 
   return (
     <div>
-      <h1>Teachers</h1>
       <ul>
-        {teachers.map((teacher) => (
-          <li key={teacher.id}>
-            <h3>
-              {teacher.name} {teacher.surname}
-            </h3>
-            <p>Languages: {teacher.languages.join(", ")}</p>
-            <p>Price: ${teacher.price_per_hour}/hour</p>
-          </li>
-        ))}
+        {filteredTeacher
+          ? filteredTeacher
+              ?.slice(0, teachersPerPage)
+              ?.map((teacher) => (
+                <TeacherItem key={teacher.id} teach={teacher} />
+              ))
+          : teachers?.map((teach) => (
+              <TeacherItem key={teach.id} teach={teach} />
+            ))}
+        {/* {filteredTeacher?.length === 0 && <NoFindTeacher />} */}
       </ul>
-      {hasMore && <button onClick={handleLoadMore}>Load more</button>}
+      {teachers?.length < 30 && !filteredTeacher && (
+        <button type="button" onClick={handleLoadMore}>
+          Show more
+        </button>
+      )}
+      {(filteredTeacher?.length ?? 0) > favoritesPerPage && (
+        <button type="button" onClick={favoritesShowMore}>
+          Show more
+        </button>
+      )}
     </div>
   );
 }
