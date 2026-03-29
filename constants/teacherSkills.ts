@@ -1,4 +1,6 @@
-export const languages = [
+import { LanguageOption } from "@/components/TeachersFilter/TeachersFilterLanguages/TeachersFilterLanguages";
+
+export const languages: LanguageOption[] = [
   { value: "English", label: "English" },
   { value: "German", label: "German" },
   { value: "Spanish", label: "Spanish" },
