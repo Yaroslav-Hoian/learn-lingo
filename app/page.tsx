@@ -5,13 +5,13 @@ import HeroText from "@/components/Hero/HeroText/HeroText";
 
 const Home = () => {
   return (
-    <section>
+    <section className={css.container}>
       <div className={css.heroGrid}>
         <div className={css.heroContent}>
           <HeroText />
           <HeroImg />
         </div>
-        <HeroStat/>
+        <HeroStat />
       </div>
     </section>
   );

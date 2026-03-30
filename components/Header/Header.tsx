@@ -4,15 +4,14 @@ import Link from "next/link";
 import css from "./Header.module.css";
 import IconJust from "../Icons/Icons";
 import { usePathname } from "next/navigation";
+import ThemeSwitcher from "@/Theme/ThemeSwitcher";
 
-interface HeaderProps {
-  className: string;
-}
-
-const Header = ({ className }: HeaderProps) => {
+const Header = () => {
   const pathName = usePathname();
   return (
-    <header className={className}>
+    <header className={css.container}>
+      <ThemeSwitcher />
+
       <div className={css.subContainer}>
         <div className={css.headerGrid}>
           <Link className={css.logo} href="/">

@@ -1,7 +1,7 @@
 .wrapper {
   position: absolute;
-  left: 10px;
-  bottom: 32px;
+  left: 11px;
+  top: 24px;
   z-index: 1000;
 }
 
@@ -22,14 +22,14 @@
 
 .palette {
   position: absolute;
-  bottom: 60px;
+  top: 56px;
   left: 10px;
   display: flex;
   flex-direction: column;
   gap: 10px;
 
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(-20px);
   pointer-events: none;
   transition: var(--animation-hover);
 }

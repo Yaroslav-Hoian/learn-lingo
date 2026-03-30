@@ -1,4 +1,6 @@
 import { LanguageOption } from "@/components/TeachersFilter/TeachersFilterLanguages/TeachersFilterLanguages";
+import { LevelOption } from "@/components/TeachersFilter/TeachersFilterLvl/TeachersFilterLvl";
+import { PriceOption } from "@/components/TeachersFilter/TeachersFilterPrice/TeachersFilterPrice";
 
 export const languages: LanguageOption[] = [
   { value: "English", label: "English" },
@@ -11,7 +13,7 @@ export const languages: LanguageOption[] = [
   { value: "Vietnamese", label: "Vietnamese" },
 ];
 
-export const levels = [
+export const levels: LevelOption[] = [
   { value: "A1 Beginner", label: "A1 Beginner" },
   { value: "A2 Elementary", label: "A2 Elementary" },
   { value: "B1 Intermediate", label: "B1 Intermediate" },
@@ -20,7 +22,7 @@ export const levels = [
   { value: "C2 Proficient", label: "C2 Proficient" },
 ];
 
-export const prices = [
+export const prices: PriceOption[] = [
   { value: 25, label: "25 $" },
   { value: 26, label: "26 $" },
   { value: 27, label: "27 $" },

@@ -1,0 +1,11 @@
+.container {
+  position: relative;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 64px;
+  background-color: #f8f8f8;
+}
+
+.teachersPage {
+  background-color: #f8f8f8;
+}
