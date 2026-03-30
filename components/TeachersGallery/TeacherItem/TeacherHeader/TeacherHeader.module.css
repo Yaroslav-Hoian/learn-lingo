@@ -1,0 +1,61 @@
+.teacherHeader {
+  display: flex;
+  width: 968px;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.teacherNameBox {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.languages {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #8a8a89;
+}
+
+.name {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.teacherHeaderInfoBox {
+  display: flex;
+  gap: 64px;
+  align-items: center;
+}
+
+.teacherHeaderInfo {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  height: 24px;
+}
+
+.lessonsOnlineBox {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.lessonsOnline {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.spanContainer {
+  height: 16px;
+}
+.span {
+  border-right: 1px solid rgba(18, 20, 23, 0.2);
+}
+
+.priceValue {
+  color: var(--price-color);
+}

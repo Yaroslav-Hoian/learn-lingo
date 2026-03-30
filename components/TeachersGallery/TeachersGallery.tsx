@@ -5,6 +5,7 @@ import { Teacher, TeacherFilter } from "@/types/type";
 import { useEffect, useState } from "react";
 import NoFindTeacher from "./NoFindTeacher/NoFindTeacher";
 import TeacherItem from "./TeacherItem/TeacherItem";
+import css from "./TeachersGallery.module.css";
 interface TeachersGalleryProps {
   filters: TeacherFilter;
 }
@@ -74,11 +75,11 @@ export default function TeachersGallery({ filters }: TeachersGalleryProps) {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div>
-      <ul>
+    <div className={css.teachersGallery}>
+      <ul className={css.teachersList}>
         {visibleTeachers.length > 0 ? (
           visibleTeachers.map((teacher) => (
-            <TeacherItem key={teacher.id} teach={teacher} />
+            <TeacherItem key={teacher.id} teach={teacher} filters={filters} />
           ))
         ) : (
           <NoFindTeacher />
@@ -88,7 +89,7 @@ export default function TeachersGallery({ filters }: TeachersGalleryProps) {
         <button
           type="button"
           onClick={handleLoadMore}
-          className="load-more-btn"
+          className={css.loadMoreButton}
         >
           Load more
         </button>

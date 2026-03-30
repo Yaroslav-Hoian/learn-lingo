@@ -1,16 +1,23 @@
-import { Teacher } from "@/types/type";
+import { Teacher, TeacherFilter } from "@/types/type";
+import css from "./TeacherItem.module.css";
+import TeacherAvatar from "./TeacherAvatar/TeacherAvatar";
+import TeacherHeader from "./TeacherHeader/TeacherHeader";
+import TeacherDescr from "./TeacherDescr/TeacherDescr";
+import TeacherLvls from "./TeacherLvls/TeacherLvls";
 
-interface TeachersItemProps {
+export interface TeachersItemProps {
   teach: Teacher;
+  filters?: TeacherFilter;
 }
 
-const TeacherItem = ({ teach }: TeachersItemProps) => {
+const TeacherItem = ({ teach, filters }: TeachersItemProps) => {
   return (
-    <li>
-      <div>
-        <p>Name: {teach.name}</p>
-        <p>Languages: {teach.languages.join(", ")}</p>
-        <p>Price: {teach.price_per_hour}</p>
+    <li className={css.teacherItem}>
+      <TeacherAvatar teach={teach} />
+      <div className={css.teacherInfo}>
+        <TeacherHeader teach={teach} />
+        <TeacherDescr teach={teach} />
+        <TeacherLvls teach={teach} filters={filters} />
       </div>
     </li>
   );

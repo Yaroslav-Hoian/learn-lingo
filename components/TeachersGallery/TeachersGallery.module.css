@@ -1,0 +1,21 @@
+.teachersGallery {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.teachersList {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.loadMoreButton {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.555;
+  padding: 16px 48px;
+  border-radius: 12px;
+  background-color: var(--accent-color);
+  margin: 0 auto;
+}

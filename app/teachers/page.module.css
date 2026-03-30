@@ -3,7 +3,15 @@
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 64px;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
   background-color: #f8f8f8;
+}
+
+.subContainer {
+  width: 1312px;
+  padding: 64px;
 }
 
 .teachersPage {

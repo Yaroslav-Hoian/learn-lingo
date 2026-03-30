@@ -16,8 +16,10 @@ const Teachers = () => {
   return (
     <section className={css.teachersPage}>
       <div className={css.container}>
-        <TeachersFilter setFilters={setFilters} />
-        <TeachersGallery filters={filters} />
+        <div className={css.subContainer}>
+          <TeachersFilter setFilters={setFilters} />
+          <TeachersGallery filters={filters} />
+        </div>
       </div>
     </section>
   );

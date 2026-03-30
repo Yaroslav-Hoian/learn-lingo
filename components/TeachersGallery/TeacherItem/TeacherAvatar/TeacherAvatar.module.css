@@ -1,0 +1,22 @@
+.teacherAvatarBox {
+  border: 3px solid var(--accent-light);
+  border-radius: 100px;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.teacherAvatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+}
+
+.teacherAvatarIcon {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+}
