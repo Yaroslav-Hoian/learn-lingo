@@ -59,3 +59,13 @@
 .priceValue {
   color: var(--price-color);
 }
+
+.iconFavorite {
+  fill: none;
+  stroke: var(--dark-color);
+  transition: var(--animation-hover);
+}
+
+.teacherFavoriteBtn:hover .iconFavorite {
+  stroke: var(--accent-color);
+}

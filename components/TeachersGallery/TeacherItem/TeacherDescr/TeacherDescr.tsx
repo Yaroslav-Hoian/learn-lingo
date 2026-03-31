@@ -1,11 +1,15 @@
 "use client";
 
-import { useState } from "react";
 import { TeachersItemProps } from "../TeacherItem";
 import css from "./TeacherDescr.module.css";
+import TeacherMoreInfo from "../TeacherMoreInfo/TeacherMoreInfo";
 
-const TeacherDescr = ({ teach }: TeachersItemProps) => {
-  const [isOpen, setIsOpen] = useState(false);
+interface TeacherDescrProps extends TeachersItemProps {
+  setShowInfo: (value: boolean) => void;
+  showInfo: boolean;
+}
+
+const TeacherDescr = ({ teach, setShowInfo, showInfo }: TeacherDescrProps) => {
   return (
     <div className={css.teacherDescr}>
       <div className={css.teacherDescrInfo}>
@@ -24,9 +28,11 @@ const TeacherDescr = ({ teach }: TeachersItemProps) => {
           <span className={css.languageInfo}>{teach.conditions}</span>
         </p>
       </div>
-      {!isOpen && (
+      {showInfo ? (
+        <TeacherMoreInfo teach={teach} />
+      ) : (
         <div className={css.readMoreContainer}>
-          <button className={css.readMore} onClick={() => setIsOpen(true)}>
+          <button className={css.readMore} onClick={() => setShowInfo(true)}>
             Read more
           </button>
         </div>

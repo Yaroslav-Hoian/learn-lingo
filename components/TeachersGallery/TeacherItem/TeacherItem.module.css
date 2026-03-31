@@ -2,7 +2,6 @@
   border-radius: 24px;
   padding: 24px;
   width: 1184px;
-  height: 328px;
   background-color: #fff;
   display: flex;
   gap: 48px;
@@ -12,4 +11,18 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
+}
+
+.teacherBookBtn {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.556;
+  border-radius: 12px;
+  padding: 16px 44px;
+  background-color: var(--accent-color);
+  transition: var(--animation-hover);
+}
+.teacherBookBtn:hover,
+.teacherBookBtn:focus {
+  background-color: var(--accent-light);
 }

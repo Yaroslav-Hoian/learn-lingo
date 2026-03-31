@@ -6,6 +6,9 @@ import { useEffect, useState } from "react";
 import NoFindTeacher from "./NoFindTeacher/NoFindTeacher";
 import TeacherItem from "./TeacherItem/TeacherItem";
 import css from "./TeachersGallery.module.css";
+import Loading from "@/app/loading";
+import Modal from "../Modal/Modal";
+import BookForm from "../Auth/BookForm/BookForm";
 interface TeachersGalleryProps {
   filters: TeacherFilter;
 }
@@ -15,6 +18,7 @@ export default function TeachersGallery({ filters }: TeachersGalleryProps) {
   const [filteredData, setFilteredData] = useState<Teacher[]>([]);
   const [limit, setLimit] = useState(4);
   const [loading, setLoading] = useState(true);
+  const [selectedTeacher, setSelectedTeacher] = useState<Teacher | null>(null);
 
   useEffect(() => {
     const loadInitialData = async () => {
@@ -72,14 +76,19 @@ export default function TeachersGallery({ filters }: TeachersGalleryProps) {
   const visibleTeachers = filteredData.slice(0, limit);
   const hasMore = limit < filteredData.length;
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loading />;
 
   return (
     <div className={css.teachersGallery}>
       <ul className={css.teachersList}>
         {visibleTeachers.length > 0 ? (
           visibleTeachers.map((teacher) => (
-            <TeacherItem key={teacher.id} teach={teacher} filters={filters} />
+            <TeacherItem
+              key={teacher.id}
+              teach={teacher}
+              filters={filters}
+              onBook={() => setSelectedTeacher(teacher)}
+            />
           ))
         ) : (
           <NoFindTeacher />
@@ -93,6 +102,11 @@ export default function TeachersGallery({ filters }: TeachersGalleryProps) {
         >
           Load more
         </button>
+      )}
+      {selectedTeacher && (
+        <Modal onClose={() => setSelectedTeacher(null)}>
+          <BookForm teach={selectedTeacher} />
+        </Modal>
       )}
     </div>
   );

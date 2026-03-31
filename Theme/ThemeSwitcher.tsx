@@ -19,6 +19,7 @@ export default function ThemeSwitcher() {
       <div className={`${styles.palette} ${open ? styles.open : ""}`}>
         {themes.map((theme) => (
           <button
+            type="button"
             key={theme}
             onClick={() => changeTheme(theme)}
             className={styles.color}
@@ -27,6 +28,7 @@ export default function ThemeSwitcher() {
         ))}
       </div>
       <button
+        type="button"
         className={styles.toggle}
         onClick={() => setOpen((prev) => !prev)}
       />

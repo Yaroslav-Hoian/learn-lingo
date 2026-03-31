@@ -5,9 +5,18 @@ import css from "./Header.module.css";
 import IconJust from "../Icons/Icons";
 import { usePathname } from "next/navigation";
 import ThemeSwitcher from "@/Theme/ThemeSwitcher";
+import { useState } from "react";
+import Modal from "../Modal/Modal";
+import LoginForm from "../Auth/LogInForm/LogInForm";
+import RegisterForm from "../Auth/RegisterForm/RegisterForm";
 
 const Header = () => {
+  const [activeModal, setActiveModal] = useState<"login" | "register" | null>(
+    null,
+  );
   const pathName = usePathname();
+
+  const closeModal = () => setActiveModal(null);
   return (
     <header className={css.container}>
       <ThemeSwitcher />
@@ -40,7 +49,11 @@ const Header = () => {
             </ul>
           </nav>
           <div className={css.headerActions}>
-            <button className={css.logInBtn}>
+            <button
+              type="button"
+              className={css.logInBtn}
+              onClick={() => setActiveModal("login")}
+            >
               <IconJust
                 width={20}
                 height={20}
@@ -50,9 +63,20 @@ const Header = () => {
               />
               Log in
             </button>
-            <button className={css.registrationBtn}>Registration</button>
+            <button
+              type="button"
+              className={css.registrationBtn}
+              onClick={() => setActiveModal("register")}
+            >
+              Registration
+            </button>
           </div>
         </div>
+        {activeModal && (
+          <Modal onClose={closeModal}>
+            {activeModal === "login" ? <LoginForm /> : <RegisterForm />}
+          </Modal>
+        )}
       </div>
     </header>
   );

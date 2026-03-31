@@ -1,0 +1,22 @@
+.teacherMoreInfo {
+  width: 968px;
+}
+
+.experience {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 32px;
+  animation: appearBottom 1000ms ease 1;
+}
+
+@keyframes appearBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
