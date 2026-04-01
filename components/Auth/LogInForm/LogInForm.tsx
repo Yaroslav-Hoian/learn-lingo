@@ -2,22 +2,20 @@
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { useRouter } from "next/navigation";
 import css from "../RegisterForm/RegisterForm.module.css";
-import { useState } from "react";
 import { loginSchema } from "@/lib/validation/ragisterValidations";
-import { auth } from "@/lib/firebase";
 import { InferType } from "yup";
 import { FirebaseError } from "firebase/app";
+import { loginUser } from "@/lib/api/authService";
+import toast from "react-hot-toast";
 
-// Типізація на основі схеми
 type LoginFormValues = InferType<typeof loginSchema>;
 
-const LoginForm = ({ onClose }: { onClose: () => void }) => {
-  const router = useRouter();
-  const [firebaseError, setFirebaseError] = useState<string | null>(null);
+interface LoginFormProps {
+  onClose: () => void;
+}
 
+const LoginForm = ({ onClose }: LoginFormProps) => {
   const {
     register,
     handleSubmit,
@@ -28,20 +26,16 @@ const LoginForm = ({ onClose }: { onClose: () => void }) => {
 
   const onSubmit: SubmitHandler<LoginFormValues> = async (data) => {
     try {
-      setFirebaseError(null);
-      await signInWithEmailAndPassword(auth, data.email, data.password);
-
+      await loginUser(data);
       onClose();
-      router.push("/teachers");
+      toast.success("Login successful!");
     } catch (error: unknown) {
       if (error instanceof FirebaseError) {
         if (error.code === "auth/invalid-credential") {
-          setFirebaseError("Invalid email or password");
+          toast.error("Invalid email or password");
         } else {
-          setFirebaseError(error.message);
+          toast.error("Something went wrong. Please try again.");
         }
-      } else {
-        setFirebaseError("Something went wrong. Please try again.");
       }
     }
   };
@@ -61,10 +55,10 @@ const LoginForm = ({ onClose }: { onClose: () => void }) => {
             type="email"
             placeholder="Email"
             {...register("email")}
-            className={errors.email ? css.inputError : ""}
+            className={css.input}
           />
           {errors.email && (
-            <p className={css.errorText}>{errors.email.message}</p>
+            <span className={css.errorText}>{errors.email.message}</span>
           )}
         </div>
 
@@ -73,14 +67,12 @@ const LoginForm = ({ onClose }: { onClose: () => void }) => {
             type="password"
             placeholder="Password"
             {...register("password")}
-            className={errors.password ? css.inputError : ""}
+            className={css.input}
           />
           {errors.password && (
-            <p className={css.errorText}>{errors.password.message}</p>
+            <span className={css.errorText}>{errors.password.message}</span>
           )}
         </div>
-
-        {firebaseError && <p className={css.mainError}>{firebaseError}</p>}
         <button
           type="submit"
           disabled={isSubmitting}

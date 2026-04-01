@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header/Header";
-import ThemeProvider from "@/Theme/ThemeProvider";
-// import ThemeSwitcher from "@/Theme/ThemeSwitcher";
+import ThemeProvider from "@/providers/ThemeProvider";
+import { AuthProvider } from "@/providers/AuthProvider";
+import { ToastProvider } from "@/providers/ToastProvider";
 
 const robotoSans = Roboto({
   weight: ["400", "500", "700"],
@@ -27,11 +28,15 @@ export default function RootLayout({
     <html lang="en">
       <body className={robotoSans.className}>
         <ThemeProvider>
-          <Header />
-          <main>
-            {children}
-            {modal}
-          </main>
+          <AuthProvider>
+            <ToastProvider>
+              <Header />
+              <main>
+                {children}
+                {modal}
+              </main>
+            </ToastProvider>
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>

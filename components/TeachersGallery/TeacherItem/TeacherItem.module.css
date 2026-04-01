@@ -22,7 +22,6 @@
   background-color: var(--accent-color);
   transition: var(--animation-hover);
 }
-.teacherBookBtn:hover,
-.teacherBookBtn:focus {
+.teacherBookBtn:hover {
   background-color: var(--accent-light);
 }

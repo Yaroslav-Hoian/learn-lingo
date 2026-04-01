@@ -1,0 +1,49 @@
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.message {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.25;
+  color: var(--accent-color);
+}
+
+.buttonsBox {
+  display: flex;
+  gap: 60px;
+}
+
+.button {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
+  padding: 14px 39px;
+  border-radius: 12px;
+  transition: var(--animation-hover);
+}
+
+.logOutBtn {
+  color: var(--white-color);
+  background-color: red;
+  border: 1px solid red;
+}
+
+.logOutBtn:hover,
+.logOutBtn:focus {
+  background-color: var(--white-color);
+  color: red;
+}
+
+.cancelBtn {
+  border: 1px solid var(--dark-color);
+  color: var(--dark-color);
+}
+
+.cancelBtn:hover,
+.cancelBtn:focus {
+  background-color: var(--accent-light);
+}

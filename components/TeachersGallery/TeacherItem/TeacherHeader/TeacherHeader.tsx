@@ -2,7 +2,14 @@ import { TeachersItemProps } from "../TeacherItem";
 import css from "./TeacherHeader.module.css";
 import TeacherHeaderInfo from "./TeacherHeaderInfo";
 
-const TeacherHeader = ({ teach }: TeachersItemProps) => {
+export interface TeacherHeaderProps {
+  onClick: () => void;
+}
+
+const TeacherHeader = ({
+  teach,
+  onClick,
+}: TeachersItemProps & TeacherHeaderProps) => {
   return (
     <div className={css.teacherHeader}>
       <div className={css.teacherNameBox}>
@@ -11,7 +18,7 @@ const TeacherHeader = ({ teach }: TeachersItemProps) => {
           {teach.name} {teach.surname}
         </h3>
       </div>
-      <TeacherHeaderInfo teach={teach} />
+      <TeacherHeaderInfo onClick={onClick} teach={teach} />
     </div>
   );
 };

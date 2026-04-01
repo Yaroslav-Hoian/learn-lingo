@@ -21,10 +21,50 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 1.375;
-  color: rgba(18, 20, 23, 0.8);
+  color: var(--form-text);
+}
+
+.form {
+  display: flex;
+  gap: 18px;
+  flex-direction: column;
+}
+
+.inputWrapper {
+  display: flex;
+  position: relative;
+}
+
+.input {
+  border: 1px solid rgba(18, 20, 23, 0.1);
+  border-radius: 12px;
+  width: 100%;
+  height: 54px;
+  padding: 16px 18px;
+  color: var(--dark-color);
+  transition: var(--animation-hover);
+}
+
+.input:hover {
+  border-color: var(--accent-light);
+}
+
+.input:focus {
+  border-color: var(--accent-color);
+  outline: none;
+}
+
+.errorText {
+  position: absolute;
+  bottom: -18px;
+  left: 16px;
+  font-size: 12px;
+  line-height: 1.375;
+  color: var(--accent-color);
 }
 
 .formButton {
+  margin-top: 22px;
   font-weight: 700;
   font-size: 18px;
   line-height: 1.556;

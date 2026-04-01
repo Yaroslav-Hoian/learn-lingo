@@ -7,6 +7,8 @@ import TeacherHeader from "./TeacherHeader/TeacherHeader";
 import TeacherDescr from "./TeacherDescr/TeacherDescr";
 import TeacherLvls from "./TeacherLvls/TeacherLvls";
 import { useState } from "react";
+import { useAuth } from "@/providers/AuthProvider";
+import toast from "react-hot-toast";
 
 export interface TeachersItemProps {
   teach: Teacher;
@@ -20,13 +22,30 @@ interface TeacherItemModalProps {
 }
 
 const TeacherItem = ({ teach, filters, onBook }: TeacherItemModalProps) => {
+  const { user } = useAuth();
   const [showInfo, setShowInfo] = useState(false);
+
+  const handleFavoriteClick = () => {
+    if (!user) {
+      toast.error("Please log in to add to favorites.");
+      return;
+    }
+    toast.success("Added to favorites!");
+  };
+
+  const handleBookClick = () => {
+    if (!user) {
+      toast.success("Please log in to book a lesson.");
+      return;
+    }
+    onBook();
+  };
 
   return (
     <li className={css.teacherItem}>
       <TeacherAvatar teach={teach} />
       <div className={css.teacherInfo}>
-        <TeacherHeader teach={teach} />
+        <TeacherHeader onClick={handleFavoriteClick} teach={teach} />
         <TeacherDescr
           teach={teach}
           showInfo={showInfo}
@@ -38,7 +57,7 @@ const TeacherItem = ({ teach, filters, onBook }: TeacherItemModalProps) => {
             <button
               type="button"
               className={css.teacherBookBtn}
-              onClick={onBook}
+              onClick={handleBookClick}
             >
               Book trial lesson
             </button>

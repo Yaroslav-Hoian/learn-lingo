@@ -2,8 +2,12 @@ import IconJust from "@/components/Icons/Icons";
 import { TeachersItemProps } from "../TeacherItem";
 import css from "./TeacherHeader.module.css";
 import TeacherHeaderFavorite from "./TeacherHeaderFavorite";
+import { TeacherHeaderProps } from "./TeacherHeader";
 
-const TeacherHeaderInfo = ({ teach }: TeachersItemProps) => {
+const TeacherHeaderInfo = ({
+  teach,
+  onClick,
+}: TeachersItemProps & TeacherHeaderProps) => {
   return (
     <div className={css.teacherHeaderInfoBox}>
       {" "}
@@ -43,7 +47,7 @@ const TeacherHeaderInfo = ({ teach }: TeachersItemProps) => {
           </p>
         </div>
       </div>
-      <TeacherHeaderFavorite />
+      <TeacherHeaderFavorite onClick={onClick} />
     </div>
   );
 };
