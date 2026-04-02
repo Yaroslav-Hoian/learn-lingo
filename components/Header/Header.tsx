@@ -4,13 +4,13 @@ import Link from "next/link";
 import css from "./Header.module.css";
 import IconJust from "../Icons/Icons";
 import { usePathname } from "next/navigation";
-import ThemeSwitcher from "@/Theme/ThemeSwitcher";
 import { useState } from "react";
 import Modal from "../Modal/Modal";
 import LoginForm from "../Auth/LogInForm/LogInForm";
 import RegisterForm from "../Auth/RegisterForm/RegisterForm";
 import { useAuth } from "@/providers/AuthProvider";
 import LogOut from "../Auth/LogOut/LogOut";
+import ThemeSwitcher from "../Theme/ThemeSwitcher";
 
 const Header = () => {
   const { user } = useAuth();
