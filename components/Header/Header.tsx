@@ -50,6 +50,17 @@ const Header = () => {
                   Teachers
                 </Link>
               </li>
+              {user && (
+                <li>
+                  <Link
+                    className={`${css.headerLinkNav} ${pathName === "/favorites" ? css.headerLinkNavActive : ""}`}
+                    href="/favorites"
+                    aria-label="Favorites"
+                  >
+                    Favorites
+                  </Link>
+                </li>
+              )}
             </ul>
           </nav>
 

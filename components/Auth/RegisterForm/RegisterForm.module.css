@@ -71,4 +71,10 @@
   border-radius: 12px;
   padding: 16px;
   background-color: var(--accent-color);
+  transition: var(--animation-hover);
+}
+
+.formButton:hover,
+.formButton:focus {
+  background-color: var(--accent-light);
 }

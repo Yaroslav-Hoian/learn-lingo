@@ -1,0 +1,183 @@
+.formContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.formHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.formTitle {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.formDescription {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.375;
+  color: var(--form-text);
+}
+
+.teacherInfo {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.teacherDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.yourTeacher {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.333;
+  color: var(--gray-card);
+}
+
+.teacherName {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.formSubTitle {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.333;
+  margin-bottom: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.radioGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.radioLabel {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.375;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  position: relative;
+}
+
+.svgWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  position: relative;
+}
+
+.iconNonActive {
+  fill: none;
+  stroke: rgba(18, 20, 23, 0.2);
+  display: block;
+  transition: var(--animation-hover);
+}
+
+.radioLabel:hover .iconNonActive {
+  stroke: var(--accent-color);
+}
+
+.iconActive {
+  display: none;
+  fill: var(--accent-color);
+  position: absolute;
+  top: 7px;
+  right: 7px;
+}
+
+.realRadio:checked ~ .svgWrapper .iconNonActive {
+  stroke: var(--accent-color);
+}
+
+.realRadio:checked ~ .svgWrapper .iconActive {
+  display: block;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.inputWrapper {
+  display: flex;
+  position: relative;
+}
+
+.input {
+  border: 1px solid rgba(18, 20, 23, 0.1);
+  border-radius: 12px;
+  width: 100%;
+  height: 54px;
+  padding: 16px 18px;
+  color: var(--dark-color);
+  transition: var(--animation-hover);
+}
+
+.input:hover {
+  border-color: var(--accent-light);
+}
+
+.input:focus {
+  border-color: var(--accent-color);
+  outline: none;
+}
+
+.errorText {
+  position: absolute;
+  bottom: -18px;
+  left: 16px;
+  font-size: 12px;
+  line-height: 1.375;
+  color: var(--accent-color);
+}
+
+.formButton {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.556;
+  border-radius: 12px;
+  padding: 16px;
+  background-color: var(--accent-color);
+  transition: var(--animation-hover);
+}
+
+.formButton:hover,
+.formButton:focus {
+  background-color: var(--accent-light);
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}

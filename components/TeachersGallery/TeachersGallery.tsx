@@ -9,31 +9,55 @@ import css from "./TeachersGallery.module.css";
 import Loading from "@/app/loading";
 import Modal from "../Modal/Modal";
 import BookForm from "../Auth/BookForm/BookForm";
+import { getFavoriteTeachersIds } from "@/lib/api/favoriteService";
+import { User } from "@/types/auth";
 interface TeachersGalleryProps {
   filters: TeacherFilter;
+  isFavoritesPage?: boolean;
+  user?: User;
+  loading?: boolean;
 }
 
-export default function TeachersGallery({ filters }: TeachersGalleryProps) {
+export default function TeachersGallery({
+  filters,
+  isFavoritesPage = false,
+  user,
+  loading,
+}: TeachersGalleryProps) {
   const [allTeachers, setAllTeachers] = useState<Teacher[]>([]);
   const [filteredData, setFilteredData] = useState<Teacher[]>([]);
   const [limit, setLimit] = useState(4);
-  const [loading, setLoading] = useState(true);
+  const [loader, setLoader] = useState(true);
   const [selectedTeacher, setSelectedTeacher] = useState<Teacher | null>(null);
 
   useEffect(() => {
     const loadInitialData = async () => {
-      setLoading(true);
-      const data = await getAllTeachersFiltered({
-        languages: null,
-        levels: null,
-        prices: null,
-      });
-      setAllTeachers(data);
-      setFilteredData(data);
-      setLoading(false);
+      setLoader(true);
+      try {
+        const data = await getAllTeachersFiltered({
+          languages: null,
+          levels: null,
+          prices: null,
+        });
+        if (isFavoritesPage && user) {
+          const favoriteIds = await getFavoriteTeachersIds(user.uid);
+          const favoritesOnly = data.filter((t) => favoriteIds.includes(t.id));
+          setAllTeachers(favoritesOnly);
+          setFilteredData(favoritesOnly);
+        } else {
+          setAllTeachers(data);
+          setFilteredData(data);
+        }
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoader(false);
+      }
     };
-    loadInitialData();
-  }, []);
+    if (!loading) {
+      loadInitialData();
+    }
+  }, [isFavoritesPage, user, loading]);
 
   useEffect(() => {
     const applyFilters = () => {
@@ -76,7 +100,7 @@ export default function TeachersGallery({ filters }: TeachersGalleryProps) {
   const visibleTeachers = filteredData.slice(0, limit);
   const hasMore = limit < filteredData.length;
 
-  if (loading) return <Loading />;
+  if (loader) return <Loading />;
 
   return (
     <div className={css.teachersGallery}>
@@ -105,7 +129,10 @@ export default function TeachersGallery({ filters }: TeachersGalleryProps) {
       )}
       {selectedTeacher && (
         <Modal onClose={() => setSelectedTeacher(null)}>
-          <BookForm teach={selectedTeacher} />
+          <BookForm
+            onClose={() => setSelectedTeacher(null)}
+            teach={selectedTeacher}
+          />
         </Modal>
       )}
     </div>

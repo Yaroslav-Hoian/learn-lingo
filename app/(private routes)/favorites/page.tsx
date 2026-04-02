@@ -1,13 +1,16 @@
 "use client";
 
+import Loading from "@/app/loading";
+import ScrollToTop from "@/components/buttons/ButtonScrollToTop/ButtonScrollToTop";
 import TeachersFilter from "@/components/TeachersFilter/TeachersFilter";
 import TeachersGallery from "@/components/TeachersGallery/TeachersGallery";
+import { useAuth } from "@/providers/AuthProvider";
 import { TeacherFilter } from "@/types/type";
 import { useEffect, useState } from "react";
-import css from "./teacherPage.module.css";
-import ScrollToTop from "@/components/buttons/ButtonScrollToTop/ButtonScrollToTop";
+import css from "../../teachers/teacherPage.module.css";
 
-const Teachers = () => {
+export default function FavoritesPage() {
+  const { user, loading } = useAuth();
   const [filters, setFilters] = useState<TeacherFilter>({
     languages: null,
     levels: null,
@@ -34,17 +37,29 @@ const Teachers = () => {
     });
   };
 
+  useEffect(() => {
+    if (!user) {
+      window.location.href = "/";
+    }
+  }, [user]);
+
+  if (loading) return <Loading />;
+  if (!user) return null;
+
   return (
     <section className={css.teachersPage}>
       <div className={css.container}>
         <div className={css.subContainer}>
           <TeachersFilter setFilters={setFilters} />
-          <TeachersGallery filters={filters} />
+          <TeachersGallery
+            user={user}
+            loading={loading}
+            filters={filters}
+            isFavoritesPage={true}
+          />
         </div>
         <ScrollToTop isVisible={showScrollBtn} onClick={handleScrillToTop} />
       </div>
     </section>
   );
-};
-
-export default Teachers;
+}

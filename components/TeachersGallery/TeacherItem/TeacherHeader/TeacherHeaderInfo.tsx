@@ -7,6 +7,7 @@ import { TeacherHeaderProps } from "./TeacherHeader";
 const TeacherHeaderInfo = ({
   teach,
   onClick,
+  isFavorite,
 }: TeachersItemProps & TeacherHeaderProps) => {
   return (
     <div className={css.teacherHeaderInfoBox}>
@@ -47,7 +48,7 @@ const TeacherHeaderInfo = ({
           </p>
         </div>
       </div>
-      <TeacherHeaderFavorite onClick={onClick} />
+      <TeacherHeaderFavorite isFavorite={isFavorite} onClick={onClick} />
     </div>
   );
 };

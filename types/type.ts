@@ -51,3 +51,20 @@ export interface TeacherFilter {
   levels?: TeacherLevels[] | null;
   prices?: TeacherPrices[] | null;
 }
+
+export type LessonType =
+  | "Career and business"
+  | "Lesson for kids"
+  | "Living abroad"
+  | "Exams and coursework"
+  | "Culture, travel or hobby";
+
+export interface BookingData {
+  teacherId: string;
+  teacherName: string;
+  lessonType: LessonType;
+  fullName: string;
+  email: string;
+  phone: string;
+  userId: string;
+}

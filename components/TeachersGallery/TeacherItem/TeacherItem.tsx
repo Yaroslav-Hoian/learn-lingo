@@ -6,9 +6,14 @@ import TeacherAvatar from "./TeacherAvatar/TeacherAvatar";
 import TeacherHeader from "./TeacherHeader/TeacherHeader";
 import TeacherDescr from "./TeacherDescr/TeacherDescr";
 import TeacherLvls from "./TeacherLvls/TeacherLvls";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "@/providers/AuthProvider";
 import toast from "react-hot-toast";
+import {
+  addTeacherToFavorites,
+  getFavoriteTeachersIds,
+  removeTeacherFromFavorites,
+} from "@/lib/api/favoriteService";
 
 export interface TeachersItemProps {
   teach: Teacher;
@@ -24,18 +29,37 @@ interface TeacherItemModalProps {
 const TeacherItem = ({ teach, filters, onBook }: TeacherItemModalProps) => {
   const { user } = useAuth();
   const [showInfo, setShowInfo] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
 
-  const handleFavoriteClick = () => {
+  useEffect(() => {
+    const checkFavorite = async () => {
+      if (user) {
+        const favorites = await getFavoriteTeachersIds(user.uid);
+        setIsFavorite(favorites.includes(teach.id));
+      }
+    };
+    checkFavorite();
+  }, [user, teach.id]);
+
+  const handleFavoriteClick = async () => {
     if (!user) {
       toast.error("Please log in to add to favorites.");
       return;
     }
-    toast.success("Added to favorites!");
+    if (isFavorite) {
+      await removeTeacherFromFavorites(user.uid, teach.id);
+      setIsFavorite(false);
+      toast.success("This teacher removed from favorites.");
+    } else {
+      await addTeacherToFavorites(user.uid, teach.id);
+      setIsFavorite(true);
+      toast.success("This teacher added to favorites.");
+    }
   };
 
   const handleBookClick = () => {
     if (!user) {
-      toast.success("Please log in to book a lesson.");
+      toast.error("Please log in to book a lesson.");
       return;
     }
     onBook();
@@ -45,7 +69,11 @@ const TeacherItem = ({ teach, filters, onBook }: TeacherItemModalProps) => {
     <li className={css.teacherItem}>
       <TeacherAvatar teach={teach} />
       <div className={css.teacherInfo}>
-        <TeacherHeader onClick={handleFavoriteClick} teach={teach} />
+        <TeacherHeader
+          isFavorite={isFavorite}
+          onClick={handleFavoriteClick}
+          teach={teach}
+        />
         <TeacherDescr
           teach={teach}
           showInfo={showInfo}
