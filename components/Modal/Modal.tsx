@@ -7,9 +7,10 @@ import IconJust from "../Icons/Icons";
 export interface ModalProps {
   onClose: () => void;
   children: ReactNode;
+  scrollable?: boolean;
 }
 
-const Modal = ({ onClose, children }: ModalProps) => {
+const Modal = ({ onClose, children, scrollable }: ModalProps) => {
   const handleBackdropClick = (ev: React.MouseEvent<HTMLDivElement>) => {
     if (ev.target === ev.currentTarget) {
       onClose();
@@ -39,7 +40,7 @@ const Modal = ({ onClose, children }: ModalProps) => {
       role="dialog"
       aria-modal="true"
     >
-      <div className={css.modal}>
+      <div className={`${css.modal} ${scrollable ? css.scroll : ""}`}>
         <button
           type="button"
           className={css.close}
@@ -49,8 +50,8 @@ const Modal = ({ onClose, children }: ModalProps) => {
           <IconJust
             icon="x"
             width={32}
-                      height={32}
-                      stroke="var(--dark-color)"
+            height={32}
+            stroke="var(--dark-color)"
           />
         </button>
         {children}

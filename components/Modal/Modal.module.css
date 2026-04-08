@@ -26,3 +26,8 @@
   top: 20px;
   right: 20px;
 }
+
+.scroll {
+  max-height: 90vh;
+  overflow-y: auto;
+}

@@ -128,7 +128,7 @@ export default function TeachersGallery({
         </button>
       )}
       {selectedTeacher && (
-        <Modal onClose={() => setSelectedTeacher(null)}>
+        <Modal scrollable onClose={() => setSelectedTeacher(null)}>
           <BookForm
             onClose={() => setSelectedTeacher(null)}
             teach={selectedTeacher}
